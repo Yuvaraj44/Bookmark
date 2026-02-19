@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🚧 Challenges Faced & How I Solved Them
+1️⃣ Learning and Adapting to Next.js
+🔹 Problem
 
-## Getting Started
+• Next.js was new to me at the beginning of this project.
+• I had prior experience with React.js and Node.js (MERN stack), but not with Next.js App Router.
+• I faced challenges in understanding:
+• App Router folder structure
+• Difference between Server Components and Client Components
+• Proper usage of environment variables
+• Authentication flow using API routes
+• Server-side rendering concepts
 
-First, run the development server:
+🔹 Solution
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+• Utilized my strong foundation in:
+• React component architecture
+• React Hooks (useEffect, useState)
+• Node.js backend development
+• REST API handling
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+• Actions taken to overcome the challenge:
+• Studied Next.js App Router documentation and project structure
+• Clearly understood when to use 'use client' in interactive components
+• Implemented Supabase authentication properly:
+• Used createServerClient() inside /auth/callback route
+• Used createBrowserClient() inside client components
+• Practiced working with layouts, routing, and server-side logic
+• Tested authentication flow thoroughly (login → callback → session creation)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+• Result:
+• Successfully adapted to Next.js in a short time
+• Built a fully functional Smart Bookmark application using App Router
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2️⃣ Implementing Real-Time Updates with Supabase (Without Page Refresh)
+🔹 Problem
 
-## Learn More
+• The main requirement was:
+• When a user adds or deletes a bookmark in one browser tab,
+the change should automatically reflect in another tab
+without refreshing the page.
 
-To learn more about Next.js, take a look at the following resources:
+• Initial challenges:
+• UI updated only after manual refresh
+• Real-time synchronization across tabs was not working
+• State was not automatically updating
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🔹 Solution
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+• Implemented Supabase Realtime using postgres_changes subscription.
 
-## Deploy on Vercel
+• Key steps taken:
+• Enabled Realtime replication for the bookmarks table in Supabase Dashboard
+• Configured Row Level Security (RLS) policies correctly
+• Subscribed to database changes using a channel listener
+• Filtered events using user_id to ensure user-specific updates
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+• Handled specific events:
+• INSERT → Instantly added new bookmark to UI state
+• DELETE → Removed bookmark from UI state immediately
+• UPDATE → Updated bookmark dynamically in UI
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+• Removed unnecessary manual fetch() calls after each action
+• Optimized state updates for performance and efficiency
+
+✅ Final Outcome
+
+• Real-time bookmark updates across multiple browser tabs
+• No page refresh required
+• Improved user experience
+• Efficient state management
+• Clean and scalable implementation
