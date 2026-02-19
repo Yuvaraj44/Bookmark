@@ -67,6 +67,10 @@ without refreshing the page.
 
 • Real-time bookmark updates across multiple browser tabs
 • No page refresh required
-• Improved user experience
-• Efficient state management
+• Improved user experience with instant UI synchronization
+• Efficient state management using real-time event handling
 • Clean and scalable implementation
+• Proper user-based data isolation using Row Level Security (RLS)
+• Each user can view only their own bookmarks
+• One user cannot see another user’s bookmark list
+• Users can delete only their own bookmarks securely
