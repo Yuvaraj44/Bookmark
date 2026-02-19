@@ -5,11 +5,12 @@ import { createClient } from '@/lib/supabase'
 import AddBookmarkForm from '@/components/AddBookmarkForm'
 import BookmarkList from '@/components/BookmarkList'
 
+const supabase = createClient()
+
 export default function Home() {
   const [user, setUser] = useState(null)
-  const [refresh, setRefresh] = useState(0)
   const [loading, setLoading] = useState(true)
-  const supabase = createClient()
+
 
   useEffect(() => {
     // Get initial session
@@ -56,7 +57,7 @@ export default function Home() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
           <h1 className="text-3xl font-bold text-center mb-2 text-gray-800 bg-red">
             📚 Smart Bookmarks
@@ -82,7 +83,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-lg shadow-xl p-6 mb-6">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center flex-wrap md:gap-0 gap-4 justify-between mb-6">
             <div className="flex items-center gap-3">
               <div className="text-3xl">📚</div>
               <div>
@@ -90,13 +91,13 @@ export default function Home() {
                 <p className="text-sm text-gray-600">{user.email}</p>
               </div>
             </div>
-            <button onClick={handleSignOut} className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors"  >
+            <button onClick={handleSignOut} className="bg-red-500 cursor-pointer hover:bg-red-600 text-white font-medium py-2 px-4 rounded-lg transition-colors"  >
               Sign Out
             </button>
           </div>
-          <AddBookmarkForm userId={user.id}  onBookmarkAdded={() => setRefresh(r => r + 1)}  />
+          <AddBookmarkForm userId={user.id} />
         </div>
-        <BookmarkList userId={user.id} key={refresh} />
+        <BookmarkList userId={user.id} />
       </div>
     </div>
   )

@@ -3,17 +3,18 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase'
 
-export default function AddBookmarkForm({ userId, onBookmarkAdded }) {
+  const supabase = createClient()
+
+export default function AddBookmarkForm({ userId }) {
   const [url, setUrl] = useState('')
   const [title, setTitle] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const supabase = createClient()
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
-    onBookmarkAdded?.()
     try {
       new URL(url)
     } catch {
@@ -89,7 +90,7 @@ export default function AddBookmarkForm({ userId, onBookmarkAdded }) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white font-medium py-3 px-4 rounded-lg transition-colors"
+        className="w-full bg-blue-500 hover:bg-blue-600 cursor-pointer disabled:bg-blue-300 text-white font-medium py-3 px-4 rounded-lg transition-colors"
       >
         {loading ? 'Adding...' : '+ Add Bookmark'}
       </button>
