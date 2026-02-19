@@ -26,7 +26,6 @@ export default function AddBookmarkForm({ userId }) {
       return
     }
     setLoading(true)
-
     try {
       const { error: insertError } = await supabase
         .from('bookmarks')
@@ -37,10 +36,7 @@ export default function AddBookmarkForm({ userId }) {
             title: title.trim(),
           },
         ])
-
       if (insertError) throw insertError
-
-      // Clear form
       setUrl('')
       setTitle('')
     } catch (err) {
@@ -80,13 +76,11 @@ export default function AddBookmarkForm({ userId }) {
           disabled={loading}
         />
       </div>
-
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
           {error}
         </div>
       )}
-
       <button
         type="submit"
         disabled={loading}

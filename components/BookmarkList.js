@@ -73,14 +73,6 @@ export default function BookmarkList({ userId }) {
       alert('Failed to delete bookmark')
     }
   }
-
-  // if (loading) {
-  //   return (
-  //     <div className="bg-white rounded-lg shadow-xl p-6">
-  //       <div className="text-center text-gray-500">Loading bookmarks...</div>
-  //     </div>
-  //   )
-  // }
   if (loading) {
     return (
       <div className="bg-white rounded-lg shadow-xl p-6">
@@ -115,8 +107,7 @@ export default function BookmarkList({ userId }) {
       </h2>
       <div className="space-y-3">
         {bookmarks.map((bookmark) => (
-          <div key={bookmark.id} className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all  "
-          >
+          <div key={bookmark.id} className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-all  "  >
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-gray-800 mb-1 truncate">
                 {bookmark.title}
